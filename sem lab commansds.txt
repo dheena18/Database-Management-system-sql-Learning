@@ -1,0 +1,39 @@
+CREATE TABLE branch(branch_name varchar(20),branch_city VARCHAR(20),branch_state VARCHAR(20),assets NUMBER(10,2),PRIMARY KEY(branch_name));
+//CREATE TABLE branch(branch_name varchar(20),branch_city VARCHAR(20),assets NUMBER(10,2),PRIMARY KEY(branch_name));
+CREATE TABLE customer(customer_name varchar(20),customer_accountno INTEGER(10),customer_gender VARCHAR(10),customer_balance INTEGER(10),customer_city VARCHAR(12),branch_name VARCHAR(12),PRIMARY KEY(customer_accountno),FOREIGN KEY(branch_name) REFERENCES branch(branch_name));
+insert into branch (branch_name,branch_city,branch_state,assets) values
+("b1","mumbai","Maharashtra",1000000),
+("b2","mumbai","Maharashtra",2000000),
+("b3","Kolkata","Karanataka",3000000),
+("b4","Kolkata","Karnataka",4000000),
+("b5","Madurai","Tamilnadu",5000000);
+insert into customer (customer_name,customer_gender,customer_accountno,customer_balance,customer_city) values
+("c1","male",001,30000,"Mumbai"),
+("c2","male",002,40000,"Mumbai"),
+("c3","male",003,50000,"Kolkata"),
+("c4","female",004,6000,"Kolkata"),
+("c5","male",005,70000,"Madurai");
+
+select * from branch
+
+select customer_name FROM customer WHERE customer_city='Mumbai';
+
+select customer_name FROM customer WHERE customer_city='Kolkata' AND customer_gender='male';
+
+SELECT 
+ branch_state ,
+ COUNT(*) count
+FROM 
+ branch
+GROUP BY
+ branch_city
+HAVING COUNT(*) > 1
+
+SELECT *,
+CASE WHEn customer_balance<50000 
+THEN 'Fixed Deposit' 
+ELSE 'current deposit' 
+END
+FROM customer
+
+DROP TABLE branch

@@ -1,0 +1,8 @@
+iii)CREATE TABLE emp2(empname VARCHAR(15),empno NUMBER(5),dateofjoin DATETIME)
+INSERT INTO emp2 VALUES('dheena',1,'2004-10-20')
+INSERT INTO emp2 VALUES('dayalan',2,'2003-09-10')
+INSERT INTO emp2 VALUES('badhri',3,'2002-08-06')
+
+SELECT dateofjoin,DATE(dateofjoin,'+2 month')FROM emp2;
+iV)SELECT dateofjoin,DATE(dateofjoin,'start of month','+1 month','-1 day')FROM emp2;
+v)SELECT dateofjoin,((Julianday('now')-Julianday(dateofjoin))/(365/12))FROM emp2;
